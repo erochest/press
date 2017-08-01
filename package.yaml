@@ -1,0 +1,73 @@
+name: press
+version: '0.0.0.0'
+synopsis: Download and scrape articles into epubs
+description: ! 'TODO: Description.'
+author: Eric Rochester
+maintainer: erochest@gmail.com
+copyright: Copyright 2017 Eric Rochester
+license: Apache-2.0
+github: erochest/press
+library:
+  source-dirs: src
+  exposed-modules:
+  - Press.Actions.Press
+  - Press.Types
+  dependencies:
+  - base >=4.8 && <4.10
+  - aeson
+  - errors
+  - http-client
+  - http-types
+  - lens
+  - lens-aeson
+  - network-uri
+  - pandoc
+  - pandoc-types
+  - text
+  - text-format
+  - wreq
+executables:
+  press:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+    - -O2
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base >=4.8 && <5
+    - press
+    - errors
+    - text
+    - optparse-applicative
+    - optparse-text
+    - errors
+tests:
+  press-specs:
+    main: Specs.hs
+    source-dirs: specs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    dependencies:
+    - base
+    - press
+    - errors
+    - lens
+    - text
+    - QuickCheck
+    - smallcheck
+    - hspec
+benchmarks:
+  press-bench:
+    main: Bench.hs
+    source-dirs: bench
+    ghc-options:
+    - -O2
+    - -threaded
+    - -rtsopts
+    dependencies:
+    - base
+    - press
+    - criterion

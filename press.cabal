@@ -1,0 +1,95 @@
+-- This file has been generated from package.yaml by hpack version 0.17.1.
+--
+-- see: https://github.com/sol/hpack
+
+name:           press
+version:        0.0.0.0
+synopsis:       Download and scrape articles into epubs
+description:    TODO: Description.
+homepage:       https://github.com/erochest/press#readme
+bug-reports:    https://github.com/erochest/press/issues
+author:         Eric Rochester
+maintainer:     erochest@gmail.com
+copyright:      Copyright 2017 Eric Rochester
+license:        Apache-2.0
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+source-repository head
+  type: git
+  location: https://github.com/erochest/press
+
+library
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.8 && <4.10
+    , aeson
+    , errors
+    , http-client
+    , http-types
+    , lens
+    , lens-aeson
+    , network-uri
+    , pandoc
+    , pandoc-types
+    , text
+    , text-format
+    , wreq
+  exposed-modules:
+      Press.Actions.Press
+      Press.Types
+  other-modules:
+      Paths_press
+  default-language: Haskell2010
+
+executable press
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -O2 -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.8 && <5
+    , press
+    , errors
+    , text
+    , optparse-applicative
+    , optparse-text
+    , errors
+  other-modules:
+      Actions
+      Opts
+      Types
+  default-language: Haskell2010
+
+test-suite press-specs
+  type: exitcode-stdio-1.0
+  main-is: Specs.hs
+  hs-source-dirs:
+      specs
+  ghc-options: -threaded -rtsopts
+  build-depends:
+      base
+    , press
+    , errors
+    , lens
+    , text
+    , QuickCheck
+    , smallcheck
+    , hspec
+  other-modules:
+      Press.TypesSpec
+  default-language: Haskell2010
+
+benchmark press-bench
+  type: exitcode-stdio-1.0
+  main-is: Bench.hs
+  hs-source-dirs:
+      bench
+  ghc-options: -O2 -threaded -rtsopts
+  build-depends:
+      base
+    , press
+    , criterion
+  default-language: Haskell2010
